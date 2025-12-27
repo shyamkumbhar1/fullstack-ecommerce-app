@@ -1,0 +1,60 @@
+{
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/cart",
+      "description": "Get user cart",
+      "auth": "required",
+      "response": {
+        "success": true,
+        "cart": {
+          "id": "string",
+          "items": "array",
+          "total": "number"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/cart",
+      "description": "Add item to cart",
+      "auth": "required",
+      "request": {
+        "body": {
+          "productId": "string (required, MongoDB ObjectId)",
+          "quantity": "number (optional, min: 1, default: 1)"
+        }
+      },
+      "response": {
+        "success": true,
+        "cart": "object"
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cart/:id",
+      "description": "Update cart item quantity",
+      "auth": "required",
+      "request": {
+        "body": {
+          "quantity": "number (required, min: 1)"
+        }
+      },
+      "response": {
+        "success": true,
+        "cart": "object"
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/cart/:id",
+      "description": "Remove item from cart",
+      "auth": "required",
+      "response": {
+        "success": true,
+        "cart": "object"
+      }
+    }
+  ]
+}
+

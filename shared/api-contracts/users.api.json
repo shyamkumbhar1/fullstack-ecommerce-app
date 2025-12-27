@@ -1,0 +1,53 @@
+{
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "description": "Get all users (admin only)",
+      "auth": "required (admin)",
+      "response": {
+        "success": true,
+        "users": "array"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/users/:id",
+      "description": "Get user by ID (admin only)",
+      "auth": "required (admin)",
+      "response": {
+        "success": true,
+        "user": "object"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/users",
+      "description": "Create user (admin only)",
+      "auth": "required (admin)",
+      "request": {
+        "body": {
+          "name": "string (required)",
+          "email": "string (required, valid email)",
+          "password": "string (required, min: 6)",
+          "role": "string (user|admin, default: user)"
+        }
+      },
+      "response": {
+        "success": true,
+        "user": "object"
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/:id",
+      "description": "Delete user (admin only)",
+      "auth": "required (admin)",
+      "response": {
+        "success": true,
+        "message": "string"
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,81 @@
+{
+  "name": "nestjs-mysql-server-6yr",
+  "version": "1.0.0",
+  "description": "E-Commerce Platform Backend - NestJS + MySQL (2018)",
+  "author": "",
+  "private": true,
+  "license": "ISC",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@nestjs/common": "^6.11.0",
+    "@nestjs/core": "^6.11.0",
+    "@nestjs/platform-express": "^6.11.0",
+    "@nestjs/typeorm": "^6.3.0",
+    "@nestjs/jwt": "^6.1.1",
+    "@nestjs/passport": "^6.2.0",
+    "typeorm": "^0.2.22",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "bcryptjs": "^2.4.3",
+    "class-validator": "^0.11.1",
+    "class-transformer": "^0.2.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.3"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^6.14.0",
+    "@nestjs/schematics": "^6.8.0",
+    "@nestjs/testing": "^6.11.0",
+    "@types/express": "^4.17.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.0",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/passport-local": "^1.0.33",
+    "@types/bcryptjs": "^2.4.2",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "source-map-support": "^0.5.16",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.5"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
+

@@ -1,0 +1,66 @@
+{
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/payment/create-order",
+      "description": "Create Razorpay order",
+      "auth": "required",
+      "request": {
+        "body": {
+          "amount": "number (required)",
+          "currency": "string (default: INR)"
+        }
+      },
+      "response": {
+        "success": true,
+        "order": {
+          "id": "string (Razorpay order ID)",
+          "amount": "number",
+          "currency": "string"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/payment/verify",
+      "description": "Verify Razorpay payment",
+      "auth": "required",
+      "request": {
+        "body": {
+          "razorpay_order_id": "string (required)",
+          "razorpay_payment_id": "string (required)",
+          "razorpay_signature": "string (required)"
+        }
+      },
+      "response": {
+        "success": true,
+        "message": "string"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/payment/webhook",
+      "description": "Razorpay webhook handler",
+      "auth": "none",
+      "response": {
+        "success": true
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/payment/sync-order",
+      "description": "Sync order from Razorpay (admin only)",
+      "auth": "required (admin)",
+      "request": {
+        "body": {
+          "razorpay_order_id": "string (required)"
+        }
+      },
+      "response": {
+        "success": true,
+        "order": "object"
+      }
+    }
+  ]
+}
+

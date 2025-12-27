@@ -1,0 +1,72 @@
+{
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/orders",
+      "description": "Create order from cart",
+      "auth": "required",
+      "request": {
+        "body": {
+          "shippingAddress": {
+            "street": "string (required)",
+            "city": "string (required)",
+            "state": "string (required)",
+            "zipCode": "string (required)",
+            "country": "string (required)"
+          },
+          "paymentMethod": "string (COD|RAZORPAY, default: COD)"
+        }
+      },
+      "response": {
+        "success": true,
+        "order": "object"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/orders",
+      "description": "Get user orders",
+      "auth": "required",
+      "response": {
+        "success": true,
+        "orders": "array"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/orders/all",
+      "description": "Get all orders (admin only)",
+      "auth": "required (admin)",
+      "response": {
+        "success": true,
+        "orders": "array"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/orders/:id",
+      "description": "Get order by ID",
+      "auth": "required",
+      "response": {
+        "success": true,
+        "order": "object"
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/orders/:id/status",
+      "description": "Update order status (admin only)",
+      "auth": "required (admin)",
+      "request": {
+        "body": {
+          "status": "string (required, pending|processing|shipped|delivered)"
+        }
+      },
+      "response": {
+        "success": true,
+        "order": "object"
+      }
+    }
+  ]
+}
+

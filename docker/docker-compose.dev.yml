@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: ecommerce-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ecommerce
+    volumes:
+      - mongodb_data_dev:/data/db
+    networks:
+      - ecommerce-network-dev
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Server (Development with hot reload)
+  backend:
+    build:
+      context: ../server
+      dockerfile: ../docker/backend/Dockerfile.dev
+    container_name: ecommerce-backend-dev
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file:
+      - ../server/.env
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      CLIENT_URL: http://localhost:3000
+      JWT_SECRET: ${JWT_SECRET:-your_super_secret_jwt_key_change_this}
+      JWT_EXPIRES_IN: 7d
+      BCRYPT_SALT: 10
+      UPLOAD_PATH: ./uploads/products
+      MAX_FILE_SIZE: 5242880
+      ALLOWED_FILE_TYPES: jpg,jpeg,png,gif
+      RATE_LIMIT_WINDOW_MS: 900000
+      RATE_LIMIT_MAX: 100
+      # Email Configuration
+      EMAIL_HOST: ${EMAIL_HOST:-smtp.hostinger.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+      # Mailtrap Configuration (Optional)
+      MAILTRAP_TOKEN: ${MAILTRAP_TOKEN:-}
+      MAILTRAP_TEST_INBOX_ID: ${MAILTRAP_TEST_INBOX_ID:-}
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID:-}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET:-}
+    volumes:
+      - ../server:/app
+      - /app/node_modules
+      - ../server/uploads:/app/uploads
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - ecommerce-network-dev
+    command: nodemon server.js
+
+  # Frontend Client (Development with hot reload)
+  frontend:
+    build:
+      context: ../client
+      dockerfile: ../docker/frontend/Dockerfile.dev
+    container_name: ecommerce-frontend-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:5000/api
+      CHOKIDAR_USEPOLLING: true
+    volumes:
+      - ../client:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - ecommerce-network-dev
+    stdin_open: true
+    tty: true
+
+volumes:
+  mongodb_data_dev:
+    driver: local
+
+networks:
+  ecommerce-network-dev:
+    driver: bridge
+

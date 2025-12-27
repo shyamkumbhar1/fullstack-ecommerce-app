@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables (DO NOT commit .env files)
+.env
+.env.local
+.env.*.local
+**/.env
+
+# But allow .env.example files (these are templates)
+!.env.example
+!**/.env.example
+!env.example.txt
+!**/env.example.txt
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+coverage/
+*.tsbuildinfo
+.next/
+.nuxt/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Uploads (user uploaded files)
+**/uploads/*
+!**/uploads/.gitkeep
+
+# Temporary files
+*.tmp
+.cache/
+
+# Laravel specific
+/vendor/
+/storage/*.key
+.phpunit.result.cache
+
+# Testing
+.nyc_output
+coverage/
+

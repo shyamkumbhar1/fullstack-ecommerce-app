@@ -1,0 +1,81 @@
+{
+  "name": "express-mongodb-server-3yr",
+  "version": "1.0.0",
+  "description": "E-Commerce Platform Backend - Express + MongoDB (2021)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "kill-port": "node scripts/killPort.js",
+    "dev": "node scripts/killPort.js && nodemon server.js",
+    "seed": "node scripts/seedAdmin.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:unit": "jest --testPathPatterns=unit",
+    "test:integration": "jest --testPathPatterns=integration",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:email": "node scripts/testEmail.js",
+    "test:mailtrap": "node scripts/testMailtrap.js",
+    "health": "node scripts/healthCheck.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "express",
+    "mongodb",
+    "nodejs",
+    "2021"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.5.1",
+    "express-validator": "^6.12.0",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.13",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.3",
+    "nodemailer": "^6.6.3",
+    "razorpay": "^2.8.6"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "mongodb-memory-server": "^8.0.0",
+    "nodemon": "^2.0.12",
+    "supertest": "^6.1.6"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": ["<rootDir>/tests/jest.setup.js"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "controllers/**/*.js",
+      "services/**/*.js",
+      "middleware/**/*.js",
+      "utils/**/*.js",
+      "!**/node_modules/**",
+      "!**/tests/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  }
+}
+

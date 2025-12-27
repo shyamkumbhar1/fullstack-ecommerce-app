@@ -1,0 +1,85 @@
+{
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/products",
+      "description": "Get all products",
+      "query": {
+        "page": "number (optional)",
+        "limit": "number (optional)",
+        "search": "string (optional)"
+      },
+      "response": {
+        "success": true,
+        "products": "array",
+        "pagination": "object"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/products/:id",
+      "description": "Get product by ID",
+      "response": {
+        "success": true,
+        "product": {
+          "id": "string",
+          "name": "string",
+          "description": "string",
+          "price": "number",
+          "image": "string",
+          "stock": "number",
+          "isActive": "boolean"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/products",
+      "description": "Create product (admin only)",
+      "auth": "required (admin)",
+      "request": {
+        "body": {
+          "name": "string (required, min: 2)",
+          "description": "string (required)",
+          "price": "number (required, min: 0)",
+          "stock": "number (required, min: 0)",
+          "image": "file (optional)"
+        }
+      },
+      "response": {
+        "success": true,
+        "product": "object"
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/products/:id",
+      "description": "Update product (admin only)",
+      "auth": "required (admin)",
+      "request": {
+        "body": {
+          "name": "string (optional)",
+          "description": "string (optional)",
+          "price": "number (optional)",
+          "stock": "number (optional)",
+          "image": "file (optional)"
+        }
+      },
+      "response": {
+        "success": true,
+        "product": "object"
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/products/:id",
+      "description": "Delete product (admin only)",
+      "auth": "required (admin)",
+      "response": {
+        "success": true,
+        "message": "string"
+      }
+    }
+  ]
+}
+
