@@ -1,15 +1,9 @@
 {
   "name": "ecommerce-app",
   "version": "1.0.0",
-  "description": "E-Commerce Multi-Stack Platform",
+  "description": "E-Commerce MERN Stack",
   "private": true,
   "scripts": {
-    "setup:env": "node scripts/setup-env.js",
-    "install:all": "node scripts/install-all.js",
-    "install:all:force": "node scripts/install-all.js --force",
-    "install:all:reinstall": "node scripts/install-all.js --reinstall",
-    "test:all": "node scripts/test-all.js",
-    "delete:old": "node scripts/delete-old-projects.js",
     "dev:express": "cd servers/express && npm run dev",
     "client": "cd client && npm start",
     "stop:all": "pkill -f 'node.*server.js' || taskkill /F /IM node.exe 2>nul || true"
