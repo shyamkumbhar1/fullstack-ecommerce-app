@@ -1,0 +1,89 @@
+{
+  "name": "ecommerce-server",
+  "version": "1.0.0",
+  "description": "E-Commerce Platform Backend - MERN Stack",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "kill-port": "node scripts/killPort.js",
+    "dev": "node scripts/killPort.js && nodemon server.js",
+    "seed": "node scripts/seedAdmin.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:unit": "jest --testPathPatterns=unit",
+    "test:integration": "jest --testPathPatterns=integration",
+    "test:all": "npm run test:unit && npm run test:integration",
+    "test:email": "node scripts/testEmail.js",
+    "test:mailtrap": "node scripts/testMailtrap.js",
+    "test:email-service": "jest --testPathPatterns=emailService.test.js",
+    "health": "node scripts/healthCheck.js",
+    "test:check-data": "node scripts/checkTestData.js",
+    "test:clean": "node scripts/cleanTestData.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "mern",
+    "nodejs",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mailtrap": "^4.4.0",
+    "mongoose": "^7.5.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^7.0.11",
+    "razorpay": "^2.9.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "bson": "^7.0.0",
+    "jest": "^30.2.0",
+    "jest-circus": "^30.2.0",
+    "jest-jasmine2": "^30.2.0",
+    "nodemon": "^3.0.1",
+    "supertest": "^7.1.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": ["<rootDir>/tests/jest.setup.js"],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "moduleNameMapper": {
+      "^bson$": "<rootDir>/node_modules/bson/lib/bson.cjs"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!bson/)"
+    ],
+    "collectCoverageFrom": [
+      "controllers/**/*.js",
+      "services/**/*.js",
+      "middleware/**/*.js",
+      "utils/**/*.js",
+      "!**/node_modules/**",
+      "!**/tests/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  }
+}

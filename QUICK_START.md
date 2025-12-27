@@ -31,7 +31,7 @@
 
 4. **Update `.env` with Laragon database URLs:**
    ```env
-   MONGO_URI=mongodb://localhost:27017/ecommerce
+   mongodb+srv://shyamkumbhar509_db_user:6kUz4xLQGc2msUDz@ecommarce.ep0aggw.mongodb.net/
    ```
 
 5. **Start backend:**
